@@ -11,7 +11,7 @@ if ($null -eq $env:exchangeinstallpath) {
 }
 
 $dirs = Get-ChildItem -r $env:exchangeinstallpath -Filter web.config -Name | ForEach-Object {
-    Split-Path -Parent | Sort-Object -Unique
+    Split-Path -Parent $_ | Sort-Object -Unique
 } 
 
 foreach ($d in $dirs) {
