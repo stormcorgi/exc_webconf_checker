@@ -38,8 +38,10 @@ Get-ChildItem -r -File $beforefolder -Name | ForEach-Object {
     } 
 
     if (!(isNullStr $beforeStr) -and !(isNullStr $afterStr)) {
-        Write-Output "---$_---"
-        Compare-Object $beforeStr $afterStr
-        Write-Output "--------------"
+        $tmp = Compare-Object $beforeStr $afterStr
+        if ($none -ne $tmp) {
+            Write-Output "diff found in $_"
+            Write-Output $tmp
+        }
     } 
 }
